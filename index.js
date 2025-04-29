@@ -13,16 +13,16 @@ app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
-app.post('/api/fileanalyse', upload.single('archivo'), function (req, res) {
+app.post('/api/fileanalyse', upload.single('upfile'), function (req, res) {
   const archivo = req.file;
 
   if (!archivo) {
     return res.status(400).json({ error: 'No file uploaded' });
   }
   const fileInfo = {
-    name: file.originalname,
-    type: file.mimetype,
-    size: file.size
+    name: archivo.originalname,
+    type: archivo.mimetype,
+    size: archivo.size
   };
   res.json(fileInfo);
 });
